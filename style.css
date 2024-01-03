@@ -1,0 +1,98 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: arial black;
+    font-size: 15px;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    background-image: linear-gradient(#99e8d7,#67e0eb,#53bfed);
+    display: flex;
+    justify-content: center;
+}
+.todo-app{
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    margin-top: 90px;
+    padding: 30px;
+    border-radius: 50px;
+    position: relative;
+}
+.todo-app h1{
+    color: #44805b;
+    font-size: 25px;
+}
+.todo-icon{
+    position: absolute;
+    height: 70px;
+    top: 3px;
+    left: 200px;
+}
+.feilds{
+    height: 40px;
+    width: 100%;
+    background-color: rgb(red, green, blue);
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    border-radius: 20px;
+    position: relative;
+}
+.feilds input{
+    width: 70%;
+    height: 40px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 15px;
+}
+.feilds button{
+    width: 28%;
+    font-size: 13px;
+    height: 40px;
+    position: absolute;
+    right: 0px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    background-color: #89d7bd;
+    cursor: pointer;
+}
+.task-list{
+    margin-top: 20px;
+}
+.task_list li{
+    padding: 10px 20px 2px ;
+    font-family: sans-serif;
+    position: relative;
+    font-weight: bolder;
+}
+.task_list li::before{
+    content: "";
+    background-image: url();
+    height: 18px;
+    width: 18px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    position: absolute;
+    left: -6px;
+    top: 8px;
+}
+.task-list li.checked{
+    color: grey;
+    text-decoration: line-through;
+}
+.texk-list li.checked::before{
+    background-image: url();
+    height: 20px;
+    width: 20px;
+}
