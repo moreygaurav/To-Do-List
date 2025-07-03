@@ -1,43 +1,55 @@
-let task = document.getElementById("task");
-let taskList = document.querySelector(".task-list");
+// ----- DOM nodes -----
+const taskInput  = document.getElementById('task-input');
+const taskList   = document.getElementById('task-list');
+const todoForm   = document.getElementById('todo-form');
 
-function addTask() {
-  let newTask = task.ariaValueMax;
-  if ((newTask = "")) {
-    let li = document.createElement("li");
-    li.innerHTML = newTask;
-    let span = document.createElement("span");
-    span.innerHTML = " ❌";
-    li.appendChild(span);
-    taskList.appendChild(li);
-    console.log(newTask);
-  } else {
-    alert("Enter A Task");
-  }
-  saveData();
-  task.value = "";
-}
-
-taskList.addEventListener(
-  "click",
-  function (event) {
-    if (event.target.tagName == "Li") {
-      event.target.classList.toggle("checked");
-      saveData();
-      console.log("clicked on li tag ");
-    } else if (event.target.tagName == "SPAN") {
-      // event.target;
-      saveData();
-      console.log("clicked on cross");
-    }
-  },
-  false
-);
-
+// ----- Helpers -----
 function saveData() {
-    localStorage.setItem("data",taskList.innerHTML);
+  localStorage.setItem('todo-data', taskList.innerHTML);
 }
-function fetchData() {
-    localStorage.getItem("data");
+
+function restoreData() {
+  const data = localStorage.getItem('todo-data');
+  if (data) taskList.innerHTML = data;
 }
-fetchData();
+
+// ----- Add task -----
+function addTask(e) {
+  e.preventDefault();
+  const text = taskInput.value.trim();
+  if (!text) {
+    alert('Please enter a task');
+    return;
+  }
+
+  const li   = document.createElement('li');
+  li.textContent = text;
+
+  // delete button (span)
+  const del  = document.createElement('span');
+  del.textContent = '✕';
+  del.classList.add('delete');
+  li.appendChild(del);
+
+  taskList.appendChild(li);
+  saveData();
+  taskInput.value = '';
+}
+
+// ----- Toggle / delete -----
+function handleListClick(e) {
+  if (e.target.tagName === 'LI') {
+    e.target.classList.toggle('checked');
+    saveData();
+  } else if (e.target.classList.contains('delete')) {
+    e.target.parentElement.remove();
+    saveData();
+  }
+}
+
+// ----- Events -----
+todoForm.addEventListener('submit', addTask);
+taskList.addEventListener('click', handleListClick);
+
+// ----- Init -----
+restoreData();
