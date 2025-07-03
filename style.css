@@ -1,98 +1,143 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-    font-family: arial black;
-    font-size: 15px;
+/* ===== Reset & Globals ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.container{
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0px;
-    background-image: linear-gradient(#99e8d7,#67e0eb,#53bfed);
-    display: flex;
-    justify-content: center;
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  background-image: url(assets/to\ do\ list\ background\ 2.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
-.todo-app{
-    width: 400px;
-    height: 400px;
-    background-color: white;
-    margin-top: 90px;
-    padding: 30px;
-    border-radius: 50px;
-    position: relative;
+
+.container {
+  width: 100%;
+  max-width: 540px;
 }
-.todo-app h1{
-    color: #44805b;
-    font-size: 25px;
+
+.todo-app {
+  background: #fff;
+  padding: 28px 24px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px  rgba(181, 190, 245, 1)
+;
 }
-.todo-icon{
-    position: absolute;
-    height: 70px;
-    top: 3px;
-    left: 200px;
+
+/* Headline */
+h1 {
+  text-align: center;
+  color: #b5bef5;
+  font-size: 1.8rem;
+  margin-bottom: 22px;
 }
-.feilds{
-    height: 40px;
-    width: 100%;
-    background-color: rgb(red, green, blue);
-    display: flex;
-    align-items: center;
-    margin-top: 50px;
-    border-radius: 20px;
-    position: relative;
+
+/* Form */
+#todo-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
 }
-.feilds input{
-    width: 70%;
-    height: 40px;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    border-radius: 20px;
-    padding: 10px;
-    font-size: 15px;
+
+#task-input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 2px solid #b5bef5;
+  border-radius: 12px;
+  font-size: 1rem;
 }
-.feilds button{
-    width: 28%;
-    font-size: 13px;
-    height: 40px;
-    position: absolute;
-    right: 0px;
-    border: none;
-    outline: none;
-    border-radius: 20px;
-    background-color: #89d7bd;
-    cursor: pointer;
+
+#task-input:focus {
+  outline: none;
+  border-color: #b5bef5;
 }
-.task-list{
-    margin-top: 20px;
+
+#todo-form button {
+  padding: 12px 18px;
+  background: #b5bef5;
+  border: none;
+  color: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background .25s;
 }
-.task_list li{
-    padding: 10px 20px 2px ;
-    font-family: sans-serif;
-    position: relative;
-    font-weight: bolder;
+
+#todo-form button:hover {
+  background: #44805b;
 }
-.task_list li::before{
-    content: "";
-    background-image: url();
-    height: 18px;
-    width: 18px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 1;
-    position: absolute;
-    left: -6px;
-    top: 8px;
+
+/* Task list */
+#task-list {
+  list-style: none;
+  max-height: 360px;
+  overflow-y: auto;
 }
-.task-list li.checked{
-    color: grey;
-    text-decoration: line-through;
+
+#task-list li {
+  position: relative;
+  padding: 12px 42px 12px 34px;
+  font-size: 1rem;
+  border-bottom: 1px solid #e9e9e9;
+  word-wrap: break-word;
 }
-.texk-list li.checked::before{
-    background-image: url();
-    height: 20px;
-    width: 20px;
+
+#task-list li::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 14px;
+  width: 14px;
+  border: 2px solid #89d7bd;
+  border-radius: 50%;
+}
+
+#task-list li.checked {
+  color: #888;
+  text-decoration: line-through;
+}
+
+#task-list li.checked::before {
+  background: #89d7bd;
+}
+
+/* Delete button */
+#task-list li .delete {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* ===== Scrollbar (optional) ===== */
+#task-list::-webkit-scrollbar {
+  width: 6px;
+}
+#task-list::-webkit-scrollbar-thumb {
+  background: #c1e6db;
+  border-radius: 3px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  .todo-app {
+    padding: 22px 18px;
+  }
+  #task-input {
+    font-size: 0.9rem;
+  }
 }
